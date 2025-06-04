@@ -10,21 +10,24 @@
           "name": "Manicure básico",
           "description": "Corte, limado, limpieza y masaje con crema hidratante.",
           "price": 150,
-          "img": ""
+          "img": "",
+          "quantity": 1
         },
         {
           "id": "a2",
           "name": "Manicure con esmaltado",
           "description": "Incluye esmalte tradicional de larga duración.",
           "price": 200,
-          "img": ""
+          "img": "",
+          "quantity": 1
         },
         {
           "id": "a3",
           "name": "Manicure spa",
           "description": "Exfoliación, mascarilla de manos, aceite nutritivo y esmaltado.",
           "price": 280,
-          "img": ""
+          "img": "",
+          "quantity": 1
         }
       ]
     },
@@ -37,21 +40,24 @@
           "name": "Esmaltado semipermanente",
           "description": "Color duradero hasta por 3 semanas. Incluye base y top coat.",
           "price": 250,
-          "img": ""
+          "img": "",
+          "quantity": 1
         },
         {
           "id": "b2",
           "name": "Esmaltado francés",
           "description": "Aplicación estilo francés con precisión y detalle.",
           "price": 300,
-          "img": ""
+          "img": "",
+          "quantity": 1
         },
         {
           "id": "b3",
           "name": "Esmaltado con diseño",
           "description": "Incluye 1 a 2 uñas con arte decorativo a elección.",
           "price": 320,
-          "img": ""
+          "img": "",
+          "quantity": 1
         }
       ]
     },
@@ -64,21 +70,24 @@
           "name": "Relleno de acrílico",
           "description": "Corrección de crecimiento en uñas acrílicas (hasta 3 semanas).",
           "price": 350,
-          "img": ""
+          "img": "",
+          "quantity": 1
         },
         {
           "id": "c2",
           "name": "Retiro de gel",
           "description": "Remoción segura con técnica no invasiva y cuidado de la uña natural.",
           "price": 80,
-          "img": ""
+          "img": "",
+          "quantity": 1
         },
         {
           "id": "c3",
           "name": "Reparación de uña rota",
           "description": "Aplicación de técnica para reconstrucción natural o acrílica.",
           "price": 100,
-          "img": ""
+          "img": "",
+          "quantity": 1
         }
       ]
     }

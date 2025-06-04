@@ -7,7 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 const Cart = () => {
   const { itemsOnCart, setItemsOnCart } = useAppContext();
 
-  const total = itemsOnCart.reduce((acc, item) => acc + item.price, 0);
+  const total = itemsOnCart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   if (itemsOnCart.length < 1) {
     return (
@@ -45,6 +48,15 @@ const Cart = () => {
             setItemsOnCart((prev) => prev.filter((i) => i.id !== item.id));
           };
 
+          const handleQuantityChange = (e) => {
+            const newQty = Math.max(1, parseInt(e.target.value) || 1);
+            setItemsOnCart((prev) =>
+              prev.map((i) =>
+                i.id === item.id ? { ...i, quantity: newQty } : i
+              )
+            );
+          };
+
           return (
             <motion.div
               key={item.id}
@@ -54,19 +66,36 @@ const Cart = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <CartItem>
-                <div className="d-flex align-items-center mx-1">
-                  <span className="mx-2">{item.name}</span>
-                </div>
-                <div className="price">
-                  ${item.price}
-                  <Trash
-                    size={14}
-                    weight="bold"
-                    className="remove"
-                    onClick={handleRemove}
-                  />
+                <div className="d-flex flex-column w-100">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span>{item.name}</span>
+                    <div className="d-flex align-items-center gap-2">
+                      <span className="fw-bold">
+                        ${item.price * item.quantity}
+                      </span>
+                      <Trash
+                        size={14}
+                        weight="bold"
+                        className="remove"
+                        onClick={handleRemove}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="d-flex justify-content-between align-items-center mt-2">
+                    <InputQuantity
+                      type="number"
+                      value={item.quantity}
+                      min={1}
+                      onChange={handleQuantityChange}
+                    />
+                    <span className="text-muted" style={{ fontSize: "0.8rem" }}>
+                      ${item.price} x {item.quantity}
+                    </span>
+                  </div>
                 </div>
               </CartItem>
+
               <DividerDecorative />
             </motion.div>
           );
@@ -75,11 +104,21 @@ const Cart = () => {
 
       <PayButton>
         <span>Total:</span>
-        <span>${total ? total : 0}</span>
+        <span>${total}</span>
       </PayButton>
     </CartContainer>
   );
 };
+
+const InputQuantity = styled.input`
+  width: 48px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+`;
 
 const DividerDecorative = () => (
   <StyledDivider>
@@ -128,12 +167,6 @@ const CartTitle = styled.h2`
   justify-content: center;
 `;
 
-const Subtitle = styled.div`
-  font-weight: 500;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-`;
-
 const CartDivider = styled.hr`
   border: none;
   border-top: 1px solid #ccc;
@@ -141,25 +174,12 @@ const CartDivider = styled.hr`
 `;
 
 const CartItem = styled.div`
-  display: flex;
-  justify-content: space-between;
   margin-top: 0.5rem;
-
-  .price {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
 
   .remove {
     color: #bba56c;
     cursor: pointer;
   }
-`;
-
-const TotalRow = styled.div`
-  font-weight: 600;
-  font-size: 1.4rem;
 `;
 
 const PayButton = styled.button`
@@ -185,7 +205,7 @@ const PayButton = styled.button`
     transform: translateY(-50%);
     width: 1.5rem;
     height: 1.5rem;
-    background-image: url("/leaf-icon.svg"); /* opcional */
+    background-image: url("/leaf-icon.svg");
     background-size: cover;
   }
 `;
