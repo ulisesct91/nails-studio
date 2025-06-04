@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useAppContext } from "../../context/AppContext";
-import { Trash,ShoppingBag, FlowerLotus, Sparkle } from "phosphor-react";
+import { Trash, ShoppingBag, FlowerLotus, Sparkle } from "phosphor-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-
 const Cart = () => {
-  const { itemsOnCart,setItemsOnCart } = useAppContext();
+  const { itemsOnCart, setItemsOnCart } = useAppContext();
 
   const total = itemsOnCart.reduce((acc, item) => acc + item.price, 0);
 
@@ -31,62 +30,56 @@ const Cart = () => {
       </CartContainer>
     );
   }
-  
 
   return (
     <CartContainer>
       <CartTitle>
-      <ShoppingBag size={20}/> 
-        <span className="mx-2">
-          Mis Servicios
-        </span>
+        <ShoppingBag size={20} />
+        <span className="mx-2">Mis Servicios</span>
       </CartTitle>
       <CartDivider />
 
       <AnimatePresence>
-  {itemsOnCart.map((item) => {
-    const handleRemove = () => {
-      setItemsOnCart((prev) => prev.filter((i) => i.id !== item.id));
-    };
+        {itemsOnCart.map((item) => {
+          const handleRemove = () => {
+            setItemsOnCart((prev) => prev.filter((i) => i.id !== item.id));
+          };
 
-    return (
-      <motion.div
-        key={item.id}
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: "auto" }}
-        exit={{ opacity: 0, height: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      >
-        <CartItem>
-          <div className="d-flex align-items-center mx-1">
-            <span className="mx-2">{item.name}</span>
-          </div>
-          <div className="price">
-            ${item.price}
-            <Trash
-              size={14}
-              weight="bold"
-              className="remove"
-              onClick={handleRemove}
-            />
-          </div>
-        </CartItem>
-        <DividerDecorative />
-      </motion.div>
-    );
-  })}
-</AnimatePresence>
-
-
+          return (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <CartItem>
+                <div className="d-flex align-items-center mx-1">
+                  <span className="mx-2">{item.name}</span>
+                </div>
+                <div className="price">
+                  ${item.price}
+                  <Trash
+                    size={14}
+                    weight="bold"
+                    className="remove"
+                    onClick={handleRemove}
+                  />
+                </div>
+              </CartItem>
+              <DividerDecorative />
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
 
       <PayButton>
         <span>Total:</span>
-        <span>${total?total:0}</span>
+        <span>${total ? total : 0}</span>
       </PayButton>
     </CartContainer>
   );
 };
-
 
 const DividerDecorative = () => (
   <StyledDivider>
@@ -111,7 +104,7 @@ const StyledDivider = styled.div`
 
   svg {
     color: #bfc8a2;
-    opacity:40%;
+    opacity: 40%;
   }
 `;
 
@@ -123,7 +116,6 @@ const CartContainer = styled.div`
   max-width: 350px;
   margin-left: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-
 `;
 
 const CartTitle = styled.h2`
@@ -166,7 +158,6 @@ const CartItem = styled.div`
 `;
 
 const TotalRow = styled.div`
-  
   font-weight: 600;
   font-size: 1.4rem;
 `;
@@ -194,10 +185,9 @@ const PayButton = styled.button`
     transform: translateY(-50%);
     width: 1.5rem;
     height: 1.5rem;
-    background-image: url('/leaf-icon.svg'); /* opcional */
+    background-image: url("/leaf-icon.svg"); /* opcional */
     background-size: cover;
   }
 `;
-
 
 export default Cart;

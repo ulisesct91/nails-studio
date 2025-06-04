@@ -1,32 +1,27 @@
-import React,{useContext} from "react";
-import Accordion from 'react-bootstrap/Accordion';
-import styled from 'styled-components';
+import React, { useContext } from "react";
+import Accordion from "react-bootstrap/Accordion";
+import styled from "styled-components";
 import { CaretDown, CaretUp, Leaf, Plus } from "phosphor-react";
 import { AccordionContext } from "react-bootstrap";
 import { useAccordionButton } from "react-bootstrap";
 import { useAppContext } from "../../../context/AppContext";
-
-
-
-
 
 const Service = ({ service }) => {
   const { id, name, items } = service;
   const { activeEventKey } = useContext(AccordionContext);
 
   const isActive = activeEventKey === id;
-   return (
+  return (
     <AccordionItemContainer eventKey={id}>
-     <CustomHeader eventKey={id} isActive={isActive}>
-    <div className="w-100 d-flex justify-content-between align-items-center">
-      <div>
-      <Leaf size={20} />
-      <span className="mx-3">{name}</span>
-      </div>
-      {isActive ? <CaretUp size={20} /> : <CaretDown size={20} />}
-
-    </div>
-  </CustomHeader>
+      <CustomHeader eventKey={id} isActive={isActive}>
+        <div className="w-100 d-flex justify-content-between align-items-center">
+          <div>
+            <Leaf size={20} />
+            <span className="mx-3">{name}</span>
+          </div>
+          {isActive ? <CaretUp size={20} /> : <CaretDown size={20} />}
+        </div>
+      </CustomHeader>
 
       <AccordionBodyContainer>
         {items.map((item, idx) => (
@@ -46,7 +41,7 @@ const Item = ({ item }) => {
 
   const handleAdd = () => {
     // Opcional: evitar duplicados
-    const exists = itemsOnCart.find(i => i.id === item.id);
+    const exists = itemsOnCart.find((i) => i.id === item.id);
     if (!exists) {
       setItemsOnCart([...itemsOnCart, item]);
     }
@@ -60,7 +55,9 @@ const Item = ({ item }) => {
       <div className="actions">
         <div className="price">${price}</div>
         <AddButton onClick={handleAdd}>
-        <Plus size={14} /><span className="mx-2 ">Agregar</span></AddButton>
+          <Plus size={14} />
+          <span className="mx-2 ">Agregar</span>
+        </AddButton>
       </div>
     </StyledItem>
   );
@@ -72,17 +69,15 @@ const AccordionItemContainer = styled(Accordion.Item)`
   box-shadow: none;
   margin-bottom: 0.75rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-
 `;
 
 const AccordionBodyContainer = styled(Accordion.Body)`
   background: #f5f0e5;
   border-radius: 20px;
-  border-top-right-radius:0;
-  border-top-left-radius:0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
   padding: 1rem;
 `;
-
 
 const StyledItem = styled.div`
   display: flex;
@@ -113,14 +108,14 @@ const StyledItem = styled.div`
   }
 
   .price {
-    font-family: 'Playfair Display', serif;
-font-weight: 600;
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
     font-size: 1.3rem;
   }
 `;
 
 const AddButton = styled.button`
-  background: #D8B981;
+  background: #d8b981;
   border: none;
   border-radius: 0.4rem;
   padding: 0.4rem 0.9rem;
@@ -143,7 +138,6 @@ const Divider = styled.hr`
   margin: 0.5rem 0;
 `;
 
-
 const CustomHeader = ({ children, eventKey, isActive }) => {
   const toggleAccordion = useAccordionButton(eventKey);
 
@@ -153,22 +147,22 @@ const CustomHeader = ({ children, eventKey, isActive }) => {
     </StyledHeader>
   );
 };
-const StyledHeader = styled(Accordion.Header).attrs({ as: 'div' })`
+const StyledHeader = styled(Accordion.Header).attrs({ as: "div" })`
   all: unset;
   cursor: pointer;
   width: 100%;
-  background-color: ${({ isActive }) => (isActive ? '#f3e8c4' : '#e3e0c7')};
+  background-color: ${({ isActive }) => (isActive ? "#f3e8c4" : "#e3e0c7")};
   padding: 1rem;
   border-radius: 20px;
-  border-bottom-right-radius:${({ isActive }) => (isActive ? '0' : '20px')};
-  border-bottom-left-radius:${({ isActive }) => (isActive ? '0' : '20px')};
+  border-bottom-right-radius: ${({ isActive }) => (isActive ? "0" : "20px")};
+  border-bottom-left-radius: ${({ isActive }) => (isActive ? "0" : "20px")};
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
   font-size: 1.2rem;
   color: #1f1f1f;
-box-sizing:border-box;
+  box-sizing: border-box;
 
   .left {
     display: flex;
@@ -180,6 +174,5 @@ box-sizing:border-box;
     color: #bba56c;
   }
 `;
-
 
 export default Service;

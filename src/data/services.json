@@ -1,87 +1,86 @@
 {
-    "title": "Karla Solis Nails",
-    "services": [
-      {
-        "id": 1,
-        "name": "Manicure",
-        "items": [
-          {
-            "id": "a1",
-            "name": "Manicure básico",
-            "description": "Corte, limado, limpieza y masaje con crema hidratante.",
-            "price": 150,
-            "img": ""
-          },
-          {
-            "id": "a2",
-            "name": "Manicure con esmaltado",
-            "description": "Incluye esmalte tradicional de larga duración.",
-            "price": 200,
-            "img": ""
-          },
-          {
-            "id": "a3",
-            "name": "Manicure spa",
-            "description": "Exfoliación, mascarilla de manos, aceite nutritivo y esmaltado.",
-            "price": 280,
-            "img": ""
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "name": "Esmaltados",
-        "items": [
-          {
-            "id": "b1",
-            "name": "Esmaltado semipermanente",
-            "description": "Color duradero hasta por 3 semanas. Incluye base y top coat.",
-            "price": 250,
-            "img": ""
-          },
-          {
-            "id": "b2",
-            "name": "Esmaltado francés",
-            "description": "Aplicación estilo francés con precisión y detalle.",
-            "price": 300,
-            "img": ""
-          },
-          {
-            "id": "b3",
-            "name": "Esmaltado con diseño",
-            "description": "Incluye 1 a 2 uñas con arte decorativo a elección.",
-            "price": 320,
-            "img": ""
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "name": "Mantenimiento",
-        "items": [
-          {
-            "id": "c1",
-            "name": "Relleno de acrílico",
-            "description": "Corrección de crecimiento en uñas acrílicas (hasta 3 semanas).",
-            "price": 350,
-            "img": ""
-          },
-          {
-            "id": "c2",
-            "name": "Retiro de gel",
-            "description": "Remoción segura con técnica no invasiva y cuidado de la uña natural.",
-            "price": 80,
-            "img": ""
-          },
-          {
-            "id": "c3",
-            "name": "Reparación de uña rota",
-            "description": "Aplicación de técnica para reconstrucción natural o acrílica.",
-            "price": 100,
-            "img": ""
-          }
-        ]
-      }
-    ]
-  }
-  
+  "title": "Karla Solis Nails",
+  "services": [
+    {
+      "id": 1,
+      "name": "Manicure",
+      "items": [
+        {
+          "id": "a1",
+          "name": "Manicure básico",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 150,
+          "img": ""
+        },
+        {
+          "id": "a2",
+          "name": "Manicure con esmaltado",
+          "description": "Incluye esmalte tradicional de larga duración.",
+          "price": 200,
+          "img": ""
+        },
+        {
+          "id": "a3",
+          "name": "Manicure spa",
+          "description": "Exfoliación, mascarilla de manos, aceite nutritivo y esmaltado.",
+          "price": 280,
+          "img": ""
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Esmaltados",
+      "items": [
+        {
+          "id": "b1",
+          "name": "Esmaltado semipermanente",
+          "description": "Color duradero hasta por 3 semanas. Incluye base y top coat.",
+          "price": 250,
+          "img": ""
+        },
+        {
+          "id": "b2",
+          "name": "Esmaltado francés",
+          "description": "Aplicación estilo francés con precisión y detalle.",
+          "price": 300,
+          "img": ""
+        },
+        {
+          "id": "b3",
+          "name": "Esmaltado con diseño",
+          "description": "Incluye 1 a 2 uñas con arte decorativo a elección.",
+          "price": 320,
+          "img": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Mantenimiento",
+      "items": [
+        {
+          "id": "c1",
+          "name": "Relleno de acrílico",
+          "description": "Corrección de crecimiento en uñas acrílicas (hasta 3 semanas).",
+          "price": 350,
+          "img": ""
+        },
+        {
+          "id": "c2",
+          "name": "Retiro de gel",
+          "description": "Remoción segura con técnica no invasiva y cuidado de la uña natural.",
+          "price": 80,
+          "img": ""
+        },
+        {
+          "id": "c3",
+          "name": "Reparación de uña rota",
+          "description": "Aplicación de técnica para reconstrucción natural o acrílica.",
+          "price": 100,
+          "img": ""
+        }
+      ]
+    }
+  ]
+}

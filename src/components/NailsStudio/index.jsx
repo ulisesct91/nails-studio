@@ -1,28 +1,26 @@
-import React,{useState} from "react";
+import React from "react";
 import Services from "../Services";
 import Cart from "../Cart";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { AppContextProvider } from "../../context/AppContext";
-
+import { breakpoints } from "../../utils/theme";
 
 const NailsStudio = () => {
-
-
-  return ( <AppContextProvider>
-   
-  <NailsStudioContainer>
-  <LogoContainer >
-    <img src="/img/logo.png" alt="Logo"  />
-    <span>NAILS STUDIO </span>
-    <span className="name">by Karla Solis</span>
-    </LogoContainer>
-    <Layout>
-
-    <Services />
-    <StickyCart />
-    </Layout>
-  </NailsStudioContainer>
-  </AppContextProvider>)
+  return (
+    <AppContextProvider>
+      <NailsStudioContainer>
+        <LogoContainer>
+          <img src="/img/logo.png" alt="Logo" />
+          <span>NAILS STUDIO</span>
+          <span className="name">by Karla Solis</span>
+        </LogoContainer>
+        <Layout>
+          <Services />
+          <StickyCart />
+        </Layout>
+      </NailsStudioContainer>
+    </AppContextProvider>
+  );
 };
 
 const StickyCart = styled(Cart)`
@@ -30,28 +28,43 @@ const StickyCart = styled(Cart)`
 `;
 const Layout = styled.div`
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+
   margin-top: 3rem;
   width: 100%;
-  max-width: 1200px;
-  align-items: flex-start;
   justify-content: center;
+  align-items: center;
+
+  @media (min-width: ${breakpoints.lg}) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `;
 
 const NailsStudioContainer = styled.div`
-display:flex;
-flex-direction:column;
-background-color: #BFC8A2;
-background-image:
-  radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0),
-  radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
-  repeating-conic-gradient(from 45deg, rgba(0, 0, 0, 0.02) 0deg 90deg, transparent 90deg 180deg);
-background-position: 0 0, 10px 10px, center;
-background-size: 20px 20px, 20px 20px, 80px 80px;
-min-height: 100vh;
-align-items: center;
-padding-top: 30px;
-`
+  display: flex;
+  flex-direction: column;
+  background-color: #bfc8a2;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
+    repeating-conic-gradient(
+      from 45deg,
+      rgba(0, 0, 0, 0.02) 0deg 90deg,
+      transparent 90deg 180deg
+    );
+  background-position:
+    0 0,
+    10px 10px,
+    center;
+  background-size:
+    20px 20px,
+    20px 20px,
+    80px 80px;
+  min-height: 100vh;
+  align-items: center;
+  padding-top: 30px;
+`;
 const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -98,6 +111,5 @@ const LogoContainer = styled.div`
     }
   }
 `;
-
 
 export default NailsStudio;
