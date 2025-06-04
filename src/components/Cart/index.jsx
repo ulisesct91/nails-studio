@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useAppContext } from "../../context/AppContext";
 import { Trash, ShoppingBag, FlowerLotus, Sparkle } from "phosphor-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { breakpoints } from "../../utils/theme";
 
 const Cart = () => {
   const { itemsOnCart, setItemsOnCart } = useAppContext();
@@ -152,9 +153,15 @@ const CartContainer = styled.div`
   border-radius: 1.25rem;
   padding: 2rem;
   width: 100%;
-  max-width: 350px;
-  margin-left: 20px;
+  max-width: 300px;
+
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  @media (min-width: ${breakpoints.sm}) {
+    max-width: 400px;
+  }
+  @media (min-width: ${breakpoints.md}) {
+    margin-left: 20px;
+  }
 `;
 
 const CartTitle = styled.h2`
