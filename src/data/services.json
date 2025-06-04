@@ -7,25 +7,9 @@
       "items": [
         {
           "id": "a1",
-          "name": "Manicure básico",
+          "name": "Manicure Rusa",
           "description": "Corte, limado, limpieza y masaje con crema hidratante.",
           "price": 150,
-          "img": "",
-          "quantity": 1
-        },
-        {
-          "id": "a2",
-          "name": "Manicure con esmaltado",
-          "description": "Incluye esmalte tradicional de larga duración.",
-          "price": 200,
-          "img": "",
-          "quantity": 1
-        },
-        {
-          "id": "a3",
-          "name": "Manicure spa",
-          "description": "Exfoliación, mascarilla de manos, aceite nutritivo y esmaltado.",
-          "price": 280,
           "img": "",
           "quantity": 1
         }
@@ -63,7 +47,7 @@
     },
     {
       "id": 3,
-      "name": "Mantenimiento",
+      "name": "Extension de uñas",
       "items": [
         {
           "id": "c1",
@@ -86,6 +70,36 @@
           "name": "Reparación de uña rota",
           "description": "Aplicación de técnica para reconstrucción natural o acrílica.",
           "price": 100,
+          "img": "",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Decoracion por uña",
+      "items": [
+        {
+          "id": "d1",
+          "name": "Baby Boomer",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 150,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "d2",
+          "name": "Efecto Aura",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 150,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "d3",
+          "name": "Efecto 3D",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 150,
           "img": "",
           "quantity": 1
         }

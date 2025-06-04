@@ -64,6 +64,7 @@ const NailsStudioContainer = styled.div`
   min-height: 100vh;
   align-items: center;
   padding-top: 30px;
+  padding-bottom: 50px;
 `;
 const LogoContainer = styled.div`
   display: flex;

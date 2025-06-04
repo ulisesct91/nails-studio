@@ -3,6 +3,7 @@ import data from "../../data/services.json";
 import Service from "./Service";
 import Accordion from "react-bootstrap/Accordion";
 import styled from "styled-components";
+import { breakpoints } from "../../utils/theme";
 
 const Services = () => {
   const services = data.services;
@@ -18,12 +19,18 @@ const Services = () => {
 };
 
 const StyledAccordion = styled(Accordion)`
-  width: 500px;
+  width: 300px;
   box-sizing: border-box;
   background: transparent;
   border: none;
   box-shadow: none;
   flex-grow: 1;
+  @media (min-width: ${breakpoints.md}) {
+    width: 400px;
+  }
+  @media (min-width: ${breakpoints.lg}) {
+    width: 500px;
+  }
 `;
 
 export default Services;
