@@ -78,7 +78,7 @@ const LogoContainer = styled.div`
     font-weight: 400;
     letter-spacing: normal;
     margin-top: 2px;
-    font-size: 16px;
+    font-size: 20px;
   font-style: italic;
   text-transform: none;
   letter-spacing: 0.3px;
