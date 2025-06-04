@@ -1,0 +1,95 @@
+{
+    "title": "Karla Solis Nails",
+    "services":[
+        {
+            "id":1,
+            "name":"service 1",
+            "items":[
+                {
+                    "id":"1",
+                    "name":"item 1",
+                    "description":"lorem asd meim opter",
+                    "price":250,
+                    "img":""
+
+                },
+                {
+                    "id":"2",
+                    "name":"item 2",
+                    "description":"lorem asd meim opter",
+                    "price":250,
+                    "img":""
+
+                },
+                {
+                    "id":"3",
+                    "name":"item 3",
+                    "description":"lorem asd meim opter",
+                    "price":300,
+                    "img":""
+
+                }
+            ]
+        },
+        {
+            "id":2,
+            "name":"service 2",
+            "items":[
+                {
+                    "id":"1",
+                    "name":"item 1",
+                    "description":"lorem asd meim opter",
+                    "price":250,
+                    "img":""
+
+                },
+                {
+                    "id":"2",
+                    "name":"item 2",
+                    "description":"lorem asd meim opter",
+                    "price":250,
+                    "img":""
+
+                },
+                {
+                    "id":"3",
+                    "name":"item 3",
+                    "description":"lorem asd meim opter",
+                    "price":300,
+                    "img":""
+
+                }
+            ]
+        },
+        {
+            "id":3,
+            "name":"service 3",
+            "items":[
+                {
+                    "id":"1",
+                    "name":"item 1",
+                    "description":"lorem asd meim opter",
+                    "price":250,
+                    "img":""
+
+                },
+                {
+                    "id":"2",
+                    "name":"item 2",
+                    "description":"lorem asd meim opter",
+                    "price":250,
+                    "img":""
+
+                },
+                {
+                    "id":"3",
+                    "name":"item 3",
+                    "description":"lorem asd meim opter",
+                    "price":300,
+                    "img":""
+
+                }
+            ]
+        }
+    ]
+  }
