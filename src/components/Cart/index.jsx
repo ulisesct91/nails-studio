@@ -84,12 +84,35 @@ const Cart = () => {
                   </div>
 
                   <div className="d-flex justify-content-between align-items-center mt-2">
-                    <InputQuantity
-                      type="number"
-                      value={item.quantity}
-                      min={1}
-                      onChange={handleQuantityChange}
-                    />
+                    <QuantityWrapper>
+                      <QtyButton
+                        onClick={() =>
+                          setItemsOnCart((prev) =>
+                            prev.map((i) =>
+                              i.id === item.id && i.quantity > 1
+                                ? { ...i, quantity: i.quantity - 1 }
+                                : i
+                            )
+                          )
+                        }
+                      >
+                        −
+                      </QtyButton>
+                      <span>{item.quantity}</span>
+                      <QtyButton
+                        onClick={() =>
+                          setItemsOnCart((prev) =>
+                            prev.map((i) =>
+                              i.id === item.id
+                                ? { ...i, quantity: i.quantity + 1 }
+                                : i
+                            )
+                          )
+                        }
+                      >
+                        +
+                      </QtyButton>
+                    </QuantityWrapper>
                     <span className="text-muted" style={{ fontSize: "0.8rem" }}>
                       ${item.price} x {item.quantity}
                     </span>
@@ -110,6 +133,37 @@ const Cart = () => {
     </CartContainer>
   );
 };
+
+const QuantityWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #eee5d0;
+  border-radius: 8px;
+  padding: 2px 8px;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+`;
+
+const QtyButton = styled.button`
+  background: none;
+  border: none;
+  color: #2e4a2d;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: #e8dcc0;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+`;
 
 const InputQuantity = styled.input`
   width: 48px;
