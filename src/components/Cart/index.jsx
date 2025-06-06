@@ -45,17 +45,9 @@ const Cart = () => {
 
       <AnimatePresence>
         {itemsOnCart.map((item) => {
+          const isDecoration = item.id.startsWith("e");
           const handleRemove = () => {
             setItemsOnCart((prev) => prev.filter((i) => i.id !== item.id));
-          };
-
-          const handleQuantityChange = (e) => {
-            const newQty = Math.max(1, parseInt(e.target.value) || 1);
-            setItemsOnCart((prev) =>
-              prev.map((i) =>
-                i.id === item.id ? { ...i, quantity: newQty } : i
-              )
-            );
           };
 
           return (
@@ -69,7 +61,7 @@ const Cart = () => {
               <CartItem>
                 <div className="d-flex flex-column w-100">
                   <div className="d-flex justify-content-between align-items-center">
-                    <span>{item.name}</span>
+                    <span style={{ fontSize: "1.2rem" }}>{item.name}</span>
                     <div className="d-flex align-items-center gap-2">
                       <span className="fw-bold">
                         ${item.price * item.quantity}
@@ -84,35 +76,40 @@ const Cart = () => {
                   </div>
 
                   <div className="d-flex justify-content-between align-items-center mt-2">
-                    <QuantityWrapper>
-                      <QtyButton
-                        onClick={() =>
-                          setItemsOnCart((prev) =>
-                            prev.map((i) =>
-                              i.id === item.id && i.quantity > 1
-                                ? { ...i, quantity: i.quantity - 1 }
-                                : i
+                    {isDecoration ? (
+                      <QuantityWrapper>
+                        <QtyButton
+                          onClick={() =>
+                            setItemsOnCart((prev) =>
+                              prev.map((i) =>
+                                i.id === item.id && i.quantity > 1
+                                  ? { ...i, quantity: i.quantity - 1 }
+                                  : i
+                              )
                             )
-                          )
-                        }
-                      >
-                        −
-                      </QtyButton>
-                      <span>{item.quantity}</span>
-                      <QtyButton
-                        onClick={() =>
-                          setItemsOnCart((prev) =>
-                            prev.map((i) =>
-                              i.id === item.id
-                                ? { ...i, quantity: i.quantity + 1 }
-                                : i
+                          }
+                        >
+                          −
+                        </QtyButton>
+                        <span>{item.quantity}</span>
+                        <QtyButton
+                          onClick={() =>
+                            setItemsOnCart((prev) =>
+                              prev.map((i) =>
+                                i.id === item.id
+                                  ? { ...i, quantity: i.quantity + 1 }
+                                  : i
+                              )
                             )
-                          )
-                        }
-                      >
-                        +
-                      </QtyButton>
-                    </QuantityWrapper>
+                          }
+                        >
+                          +
+                        </QtyButton>
+                      </QuantityWrapper>
+                    ) : (
+                      <span className="fw-semibold">Cantidad: 1</span>
+                    )}
+
                     <span className="text-muted" style={{ fontSize: "0.8rem" }}>
                       ${item.price} x {item.quantity}
                     </span>

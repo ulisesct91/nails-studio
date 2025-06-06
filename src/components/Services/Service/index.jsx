@@ -16,8 +16,13 @@ const Service = ({ service }) => {
       <CustomHeader eventKey={id} isActive={isActive}>
         <div className="w-100 d-flex justify-content-between align-items-center">
           <div>
-            <Leaf size={20} />
-            <span className="mx-3">{name}</span>
+            <Leaf size={30} />
+            <span
+              className="mx-3 "
+              style={{ fontSize: "1.5rem", fontWeight: "600" }}
+            >
+              {name}
+            </span>
           </div>
           {isActive ? <CaretUp size={20} /> : <CaretDown size={20} />}
         </div>
@@ -34,29 +39,25 @@ const Service = ({ service }) => {
     </AccordionItemContainer>
   );
 };
-
 const Item = ({ item }) => {
-  const { name, description, price } = item;
+  const { name, price } = item;
   const { setItemsOnCart, itemsOnCart } = useAppContext();
 
   const handleAdd = () => {
-    // Opcional: evitar duplicados
     const exists = itemsOnCart.find((i) => i.id === item.id);
     if (!exists) {
       setItemsOnCart([...itemsOnCart, item]);
     }
   };
+
   return (
     <StyledItem>
-      <div className="info px-3">
-        <div className="name">{name}</div>
-        <div className="desc">{description}</div>
-      </div>
+      <div className="name">{name}</div>
       <div className="actions">
         <div className="price">${price}</div>
         <AddButton onClick={handleAdd}>
           <Plus size={14} />
-          <span className="mx-2 ">Agregar</span>
+          <span className="mx-2">Agregar</span>
         </AddButton>
       </div>
     </StyledItem>
@@ -82,35 +83,38 @@ const AccordionBodyContainer = styled(Accordion.Body)`
 const StyledItem = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 1rem 0;
+  align-items: center;
+  padding: 0.8rem 0;
+
+  &:hover {
+    background-color: #f0e6d2; /* tono crema claro */
+    box-shadow: 0 2px 8px rgba(187, 165, 108, 0.2); /* reflejo dorado */
+  }
 
   .info {
     flex: 1;
   }
 
   .name {
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .desc {
-    color: #6c6c6c;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: #2b2b2b;
   }
 
   .actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-end;
-    gap: 0.5rem;
+    gap: 0.3rem;
+    align-items: center;
+    justify-content: center;
   }
 
   .price {
+    margin-right: 20px;
     font-family: "Playfair Display", serif;
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 `;
 

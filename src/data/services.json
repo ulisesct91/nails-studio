@@ -3,13 +3,21 @@
   "services": [
     {
       "id": 1,
-      "name": "Manicure",
+      "name": "Esmaltado",
       "items": [
         {
           "id": "a1",
-          "name": "Manicure Rusa",
+          "name": "Esmaltado Engel",
           "description": "Corte, limado, limpieza y masaje con crema hidratante.",
           "price": 150,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "a2",
+          "name": "Esmaltado Frances",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 210,
           "img": "",
           "quantity": 1
         }
@@ -17,29 +25,21 @@
     },
     {
       "id": 2,
-      "name": "Esmaltados",
+      "name": "Nivelacion",
       "items": [
         {
           "id": "b1",
-          "name": "Esmaltado semipermanente",
+          "name": "Nivelacion (Rubber)",
           "description": "Color duradero hasta por 3 semanas. Incluye base y top coat.",
-          "price": 250,
+          "price": 180,
           "img": "",
           "quantity": 1
         },
         {
           "id": "b2",
-          "name": "Esmaltado francés",
+          "name": "Rubber + Esmaltado",
           "description": "Aplicación estilo francés con precisión y detalle.",
           "price": 300,
-          "img": "",
-          "quantity": 1
-        },
-        {
-          "id": "b3",
-          "name": "Esmaltado con diseño",
-          "description": "Incluye 1 a 2 uñas con arte decorativo a elección.",
-          "price": 320,
           "img": "",
           "quantity": 1
         }
@@ -51,25 +51,17 @@
       "items": [
         {
           "id": "c1",
-          "name": "Relleno de acrílico",
+          "name": "Soft Gel",
           "description": "Corrección de crecimiento en uñas acrílicas (hasta 3 semanas).",
-          "price": 350,
+          "price": 250,
           "img": "",
           "quantity": 1
         },
         {
           "id": "c2",
-          "name": "Retiro de gel",
+          "name": "Tecnica Hibrida",
           "description": "Remoción segura con técnica no invasiva y cuidado de la uña natural.",
-          "price": 80,
-          "img": "",
-          "quantity": 1
-        },
-        {
-          "id": "c3",
-          "name": "Reparación de uña rota",
-          "description": "Aplicación de técnica para reconstrucción natural o acrílica.",
-          "price": 100,
+          "price": 350,
           "img": "",
           "quantity": 1
         }
@@ -77,29 +69,123 @@
     },
     {
       "id": 4,
-      "name": "Decoracion por uña",
+      "name": "Retiros",
       "items": [
         {
           "id": "d1",
-          "name": "Baby Boomer",
-          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
-          "price": 150,
+          "name": "Retiro de Gel",
+          "description": "Corrección de crecimiento en uñas acrílicas (hasta 3 semanas).",
+          "price": 30,
           "img": "",
           "quantity": 1
         },
         {
           "id": "d2",
-          "name": "Efecto Aura",
+          "name": "Retiro otro sistema",
+          "description": "Remoción segura con técnica no invasiva y cuidado de la uña natural.",
+          "price": 100,
+          "img": "",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Decoracion",
+      "items": [
+        {
+          "id": "e1",
+          "name": "Baby Boomer",
           "description": "Corte, limado, limpieza y masaje con crema hidratante.",
-          "price": 150,
+          "price": 5,
           "img": "",
           "quantity": 1
         },
         {
-          "id": "d3",
-          "name": "Efecto 3D",
+          "id": "e2",
+          "name": "Efecto Aura",
           "description": "Corte, limado, limpieza y masaje con crema hidratante.",
-          "price": 150,
+          "price": 5,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e3",
+          "name": "M. Alzada Simple",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 10,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e4",
+          "name": "M. Alzada Avanzado",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 20,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e5",
+          "name": "Marmol",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 10,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e6",
+          "name": "Arte Coreano",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 20,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e7",
+          "name": "Dijes",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 10,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e8",
+          "name": "Efecto Cromo",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 5,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e9",
+          "name": "Encapsulado",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 10,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e10",
+          "name": "Relieve Sensillo",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 10,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e11",
+          "name": "Relieve Cromo",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 15,
+          "img": "",
+          "quantity": 1
+        },
+        {
+          "id": "e12",
+          "name": "3D Flores",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 25,
           "img": "",
           "quantity": 1
         }

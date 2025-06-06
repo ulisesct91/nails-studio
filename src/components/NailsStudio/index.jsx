@@ -25,6 +25,12 @@ const NailsStudio = () => {
 
 const StickyCart = styled(Cart)`
   align-self: flex-start;
+
+  @media (min-width: ${breakpoints.lg}) {
+    position: sticky;
+    top: 2rem;
+    z-index: 10;
+  }
 `;
 const Layout = styled.div`
   display: flex;
