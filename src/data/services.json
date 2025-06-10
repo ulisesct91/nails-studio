@@ -2,6 +2,20 @@
   "title": "Karla Solis Nails",
   "services": [
     {
+      "id": 6,
+      "name": "Manicura Rusa",
+      "items": [
+        {
+          "id": "f1",
+          "name": "Manicura Rusa",
+          "description": "Corte, limado, limpieza y masaje con crema hidratante.",
+          "price": 150,
+          "img": "",
+          "quantity": 1
+        }
+      ]
+    },
+    {
       "id": 1,
       "name": "Esmaltado",
       "items": [
