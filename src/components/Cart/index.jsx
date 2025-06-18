@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { breakpoints } from "../../utils/theme";
 import jsPDF from "jspdf";
 import { useRef } from "react";
-import logo from "/public/img/logo_pdf.jpg";
+import logo from "../../assets/logo_pdf.jpg";
 import { Modal } from "react-bootstrap";
 
 const Cart = () => {
