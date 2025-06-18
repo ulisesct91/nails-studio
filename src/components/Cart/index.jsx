@@ -1,17 +1,122 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useAppContext } from "../../context/AppContext";
-import { Trash, ShoppingBag, FlowerLotus, Sparkle } from "phosphor-react";
+import {
+  Trash,
+  ShoppingBag,
+  FlowerLotus,
+  Sparkle,
+  ShareNetwork,
+} from "phosphor-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { breakpoints } from "../../utils/theme";
+import jsPDF from "jspdf";
+import { useRef } from "react";
+import logo from "/public/img/logo_pdf.jpg";
+import { Modal, Button, Form } from "react-bootstrap";
 
 const Cart = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [clientName, setClientName] = useState("");
+
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
   const { itemsOnCart, setItemsOnCart } = useAppContext();
+  const cartRef = useRef();
 
   const total = itemsOnCart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  const handleGeneratePDF = () => {
+    handleCloseModal();
+
+    if (!clientName || clientName.trim().length < 2) {
+      alert("Por favor, escribe un nombre válido para el cliente");
+      return;
+    }
+
+    const doc = new jsPDF();
+    const img = new Image();
+    img.src = logo; // Asegúrate de que sea JPEG o PNG sin transparencia excesiva
+
+    img.onload = () => {
+      // === Banner ===
+      const bannerWidth = 180;
+      const bannerHeight = bannerWidth * (420 / 1620); // mantiene proporción del nuevo banner
+      const marginX = (210 - bannerWidth) / 2;
+
+      doc.addImage(img, "PNG", marginX, 10, bannerWidth, bannerHeight);
+
+      const afterBannerY = 10 + bannerHeight + 10;
+
+      // === Título Presupuesto ===
+      doc.setFont("times", "bolditalic");
+      doc.setFontSize(20);
+      doc.text("Presupuesto", 105, afterBannerY, { align: "center" });
+
+      // === Cliente y fecha ===
+      doc.setFont("helvetica", "");
+      doc.setFontSize(12);
+      doc.text(`Cliente: ${clientName}`, 105, afterBannerY + 10, {
+        align: "center",
+      });
+      doc.text(
+        `Fecha: ${new Date().toLocaleDateString("es-MX")}`,
+        105,
+        afterBannerY + 18,
+        {
+          align: "center",
+        }
+      );
+
+      // === Línea divisora ===
+      doc.setDrawColor(180);
+      doc.line(20, afterBannerY + 24, 190, afterBannerY + 24);
+
+      // === Encabezado tabla ===
+      let startY = afterBannerY + 35;
+      doc.setFont("helvetica", "bold");
+      doc.text("Servicio", 20, startY);
+      doc.text("Precio", 90, startY);
+      doc.text("Cantidad", 130, startY);
+      doc.text("Subtotal", 170, startY);
+      doc.line(20, startY + 2, 190, startY + 2);
+      startY += 10;
+
+      // === Items ===
+      doc.setFont("helvetica", "");
+      itemsOnCart.forEach((item) => {
+        const subtotal = item.price * item.quantity;
+        doc.text(item.name, 20, startY);
+        doc.text(`$${item.price}`, 90, startY);
+        doc.text(`${item.quantity}`, 130, startY);
+        doc.text(`$${subtotal}`, 170, startY);
+        startY += 10;
+      });
+
+      // === Total ===
+      doc.setFont("helvetica", "bold");
+      doc.text("Total:", 130, startY + 10);
+      doc.text(`$${total}`, 170, startY + 10);
+
+      // === Pie de página ===
+      doc.setFontSize(10);
+      doc.setTextColor(100);
+      doc.text(
+        "Contacto: 312 169 4199   |   Instagram: @karla_solisnails",
+        105,
+        285,
+        { align: "center" }
+      );
+
+      // === Mostrar PDF en nueva pestaña ===
+      const pdfBlob = doc.output("bloburl");
+      window.open(pdfBlob, "_blank");
+    };
+  };
 
   if (itemsOnCart.length < 1) {
     return (
@@ -36,7 +141,7 @@ const Cart = () => {
   }
 
   return (
-    <CartContainer>
+    <CartContainer ref={cartRef}>
       <CartTitle>
         <ShoppingBag size={20} />
         <span className="mx-2">Mis Servicios</span>
@@ -127,6 +232,32 @@ const Cart = () => {
         <span>Total:</span>
         <span>${total}</span>
       </PayButton>
+
+      <ShareOutlineButton onClick={handleOpenModal}>
+        <ShareNetwork size={18} />
+        Compartir
+      </ShareOutlineButton>
+
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <StyledModalBody>
+          <h5 className="modal-title">Nombre del cliente</h5>
+          <InputStyled
+            type="text"
+            placeholder="Ej. María González"
+            value={clientName}
+            onChange={(e) => setClientName(e.target.value)}
+          />
+          <Actions>
+            <GhostButton onClick={handleCloseModal}>Cancelar</GhostButton>
+            <PrimaryButton
+              onClick={handleGeneratePDF}
+              disabled={clientName.trim().length < 1}
+            >
+              Compartir PDF
+            </PrimaryButton>
+          </Actions>
+        </StyledModalBody>
+      </Modal>
     </CartContainer>
   );
 };
@@ -160,16 +291,6 @@ const QtyButton = styled.button`
     opacity: 0.3;
     cursor: not-allowed;
   }
-`;
-
-const InputQuantity = styled.input`
-  width: 48px;
-  height: 30px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 0.9rem;
 `;
 
 const DividerDecorative = () => (
@@ -211,7 +332,7 @@ const CartContainer = styled.div`
     max-width: 400px;
   }
   @media (min-width: ${breakpoints.md}) {
-    margin-left: 20px;
+    margin-left: 0px;
   }
 `;
 
@@ -265,6 +386,106 @@ const PayButton = styled.button`
     height: 1.5rem;
     background-image: url("/leaf-icon.svg");
     background-size: cover;
+  }
+`;
+
+const ShareOutlineButton = styled.button`
+  margin-top: 20px;
+  background: transparent;
+  color: #5d6f55;
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #5d6f55;
+  border-radius: 999px; /* estilo cápsula */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #f1f5ef;
+  }
+
+  svg {
+    stroke-width: 1.5;
+  }
+`;
+
+const StyledModalBody = styled(Modal.Body)`
+  background-color: #fcf9f2;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  .modal-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    color: #333;
+  }
+`;
+
+const InputStyled = styled.input`
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-family: "Lora", serif;
+  border-radius: 0.9rem;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  color: #333;
+
+  &::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+`;
+
+const Actions = styled.div`
+  margin-top: 1.8rem;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const PrimaryButton = styled.button`
+  background-color: #2e4a2d;
+  color: white;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background-color: #263e25;
+  }
+  &:disabled {
+    background-color: #b7c1b5;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+`;
+
+const GhostButton = styled.button`
+  background: none;
+  border: none;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #5c5c5c;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
