@@ -116,6 +116,7 @@ const Cart = () => {
       // === Mostrar PDF y asignar nombre ===
       const pdfBlob = doc.output("blob");
       const blobUrl = URL.createObjectURL(pdfBlob);
+      window.open(blobUrl, "_blank");
 
       // Crea descarga directa
       const link = document.createElement("a");
