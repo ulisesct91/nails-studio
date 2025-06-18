@@ -1,5 +1,8 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
+
 export default defineConfig({
-  base: "./", // ← esto asegura que los assets funcionen en Render
   plugins: [
     react(),
     VitePWA({
@@ -13,7 +16,7 @@ export default defineConfig({
       manifest: {
         name: "Nails Studio by Karla Solis",
         short_name: "Nails Studio",
-        start_url: ".",
+        start_url: "/",
         display: "standalone",
         background_color: "#f8f2e1",
         theme_color: "#2e4a2d",
