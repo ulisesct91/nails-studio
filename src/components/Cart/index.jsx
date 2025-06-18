@@ -40,7 +40,7 @@ const Cart = () => {
 
     const doc = new jsPDF();
     const img = new Image();
-    img.src = logo; // logo importado
+    img.src = logo;
 
     img.onload = () => {
       // === Banner ===
@@ -66,16 +66,14 @@ const Cart = () => {
         `Fecha: ${new Date().toLocaleDateString("es-MX")}`,
         105,
         afterBannerY + 18,
-        {
-          align: "center",
-        }
+        { align: "center" }
       );
 
-      // === Línea ===
+      // === Línea divisoria ===
       doc.setDrawColor(180);
       doc.line(20, afterBannerY + 24, 190, afterBannerY + 24);
 
-      // === Tabla ===
+      // === Tabla encabezado ===
       let startY = afterBannerY + 35;
       doc.setFont("helvetica", "bold");
       doc.text("Servicio", 20, startY);
@@ -101,33 +99,38 @@ const Cart = () => {
       doc.text("Total:", 130, startY + 10);
       doc.text(`$${total}`, 170, startY + 10);
 
-      // === Pie de página ===
+      // === Footer ===
       doc.setFontSize(10);
       doc.setTextColor(100);
       doc.text(
         "Contacto: 312 169 4199   |   Instagram: @karla_solisnails",
         105,
         285,
-        {
-          align: "center",
-        }
+        { align: "center" }
       );
 
-      // === Mostrar PDF y asignar nombre ===
+      // === Nombre del archivo ===
+      const date = new Date().toLocaleDateString("es-MX").replace(/\//g, "-");
+      const fileName = `Presupuesto-${clientName}-${date}.pdf`;
+
+      // === Mostrar como visor ===
       const pdfBlob = doc.output("blob");
       const blobUrl = URL.createObjectURL(pdfBlob);
-      window.open(blobUrl, "_blank");
 
-      // Crea descarga directa
+      const newWindow = window.open();
+      if (newWindow) {
+        const iframe = newWindow.document.createElement("iframe");
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.src = blobUrl;
+        newWindow.document.title = fileName;
+        newWindow.document.body.appendChild(iframe);
+      }
+
+      // === Descargar directamente con nombre correcto ===
       const link = document.createElement("a");
       link.href = blobUrl;
-      link.download = `Presupuesto-${clientName}.pdf`;
-      link.click();
-
-      // === Nombre personalizado para descarga desde visor ===
-      const date = new Date().toLocaleDateString("es-MX").replace(/\//g, "-");
-      link.href = blobUrl;
-      link.download = `Presupuesto-${clientName}-${date}.pdf`;
+      link.download = fileName;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
