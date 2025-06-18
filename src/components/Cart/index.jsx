@@ -116,7 +116,13 @@ const Cart = () => {
       // === Mostrar PDF y asignar nombre ===
       const pdfBlob = doc.output("blob");
       const blobUrl = URL.createObjectURL(pdfBlob);
-      window.open(blobUrl, "_blank"); // Se abre en pestaña nueva
+
+      const newWindow = window.open();
+      const iframe = newWindow.document.createElement("iframe");
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.src = blobUrl;
+      newWindow.document.body.appendChild(iframe);
 
       // === Nombre personalizado para descarga desde visor ===
       const date = new Date().toLocaleDateString("es-MX").replace(/\//g, "-");
