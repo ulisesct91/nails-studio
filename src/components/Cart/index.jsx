@@ -13,7 +13,7 @@ import { breakpoints } from "../../utils/theme";
 import jsPDF from "jspdf";
 import { useRef } from "react";
 import logo from "/public/img/logo_pdf.jpg";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 const Cart = () => {
   const [showModal, setShowModal] = useState(false);
@@ -40,24 +40,23 @@ const Cart = () => {
 
     const doc = new jsPDF();
     const img = new Image();
-    img.src = logo; // Asegúrate de que sea JPEG o PNG sin transparencia excesiva
+    img.src = logo; // logo importado
 
     img.onload = () => {
       // === Banner ===
       const bannerWidth = 180;
-      const bannerHeight = bannerWidth * (420 / 1620); // mantiene proporción del nuevo banner
+      const bannerHeight = bannerWidth * (420 / 1620); // proporción del banner
       const marginX = (210 - bannerWidth) / 2;
-
       doc.addImage(img, "PNG", marginX, 10, bannerWidth, bannerHeight);
 
       const afterBannerY = 10 + bannerHeight + 10;
 
-      // === Título Presupuesto ===
+      // === Título ===
       doc.setFont("times", "bolditalic");
       doc.setFontSize(20);
       doc.text("Presupuesto", 105, afterBannerY, { align: "center" });
 
-      // === Cliente y fecha ===
+      // === Datos cliente ===
       doc.setFont("helvetica", "");
       doc.setFontSize(12);
       doc.text(`Cliente: ${clientName}`, 105, afterBannerY + 10, {
@@ -72,11 +71,11 @@ const Cart = () => {
         }
       );
 
-      // === Línea divisora ===
+      // === Línea ===
       doc.setDrawColor(180);
       doc.line(20, afterBannerY + 24, 190, afterBannerY + 24);
 
-      // === Encabezado tabla ===
+      // === Tabla ===
       let startY = afterBannerY + 35;
       doc.setFont("helvetica", "bold");
       doc.text("Servicio", 20, startY);
@@ -109,12 +108,24 @@ const Cart = () => {
         "Contacto: 312 169 4199   |   Instagram: @karla_solisnails",
         105,
         285,
-        { align: "center" }
+        {
+          align: "center",
+        }
       );
 
-      // === Mostrar PDF en nueva pestaña ===
-      const pdfBlob = doc.output("bloburl");
-      window.open(pdfBlob, "_blank");
+      // === Mostrar PDF y asignar nombre ===
+      const pdfBlob = doc.output("blob");
+      const blobUrl = URL.createObjectURL(pdfBlob);
+      window.open(blobUrl, "_blank"); // Se abre en pestaña nueva
+
+      // === Nombre personalizado para descarga desde visor ===
+      const date = new Date().toLocaleDateString("es-MX").replace(/\//g, "-");
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = `Presupuesto-${clientName}-${date}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     };
   };
 
@@ -332,7 +343,7 @@ const CartContainer = styled.div`
     max-width: 400px;
   }
   @media (min-width: ${breakpoints.md}) {
-    margin-left: 0px;
+    margin-left: 20px;
   }
 `;
 
