@@ -117,16 +117,14 @@ const Cart = () => {
       const pdfBlob = doc.output("blob");
       const blobUrl = URL.createObjectURL(pdfBlob);
 
-      const newWindow = window.open();
-      const iframe = newWindow.document.createElement("iframe");
-      iframe.style.width = "100%";
-      iframe.style.height = "100%";
-      iframe.src = blobUrl;
-      newWindow.document.body.appendChild(iframe);
+      // Crea descarga directa
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = `Presupuesto-${clientName}.pdf`;
+      link.click();
 
       // === Nombre personalizado para descarga desde visor ===
       const date = new Date().toLocaleDateString("es-MX").replace(/\//g, "-");
-      const link = document.createElement("a");
       link.href = blobUrl;
       link.download = `Presupuesto-${clientName}-${date}.pdf`;
       document.body.appendChild(link);
